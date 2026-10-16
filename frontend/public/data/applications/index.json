@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "slug": "general",
+    "title": "Genel Üyelik Başvurusu",
+    "description": "Gençya Teknoloji Takımı'na üyelik için genel başvuru formu.",
+    "type": "general",
+    "icon": "faUsers"
+  },
+  {
+    "id": 2,
+    "slug": "navigation",
+    "title": "Otonom Navigasyon Takımı Başvurusu",
+    "description": "GPS, IMU ve sensör entegrasyonu ile otonom navigasyon sistemleri geliştirmek için başvuru formu.",
+    "type": "technical",
+    "icon": "faCompass"
+  },
+  {
+    "id": 3,
+    "slug": "vision",
+    "title": "Görüntü İşleme & Yapay Zeka Takımı Başvurusu",
+    "description": "Bilgisayarlı görü, nesne tanıma ve yapay zeka algoritmalarıyla çalışmak için başvuru formu.",
+    "type": "technical",
+    "icon": "faEye"
+  },
+  {
+    "id": 4,
+    "slug": "electronics",
+    "title": "Elektronik & Mekanik Takımı Başvurusu",
+    "description": "Araç tasarımı, elektronik devre ve güç sistemleri geliştirmek için başvuru formu.",
+    "type": "technical",
+    "icon": "faMicrochip"
+  }
+]

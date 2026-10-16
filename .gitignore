@@ -1,0 +1,30 @@
+.DS_Store
+ecosystem.config.js
+
+# Bu proje npm ile çalışır (tek lockfile: package-lock.json).
+# Başka bir paket yöneticisiyle lokalde denenirse üreteceği lockfile repoya
+# girmesin — iki lockfile bir arada Turbopack'in workspace kökünü yanlış
+# çözmesine ve kurulumların ayrışmasına yol açıyor.
+.pnpm-store/
+pnpm-lock.yaml
+yarn.lock
+
+# Claude Code kişisel ayarları — yerel kalır
+.claude/settings.local.json
+
+# Ham fotoğraf kaynakları — işlenmiş hâlleri frontend/public/profile/ altında
+görseller yeni/
+
+# Veritabanı yedekleri — başvuranların kişisel verilerini içerir, asla commit edilmez
+backend/backups/
+# Aracın 3B modeli ve CAD dosyaları repoya girmez (açık kaynak repo; tasarım çalınabilir).
+# Sitedeki çizim vehicleDrawing.ts'teki sadeleştirilmiş 2B siluetlerden.
+*.[sS][tT][lL]
+*.[sS][tT][eE][pP]
+*.[sS][tT][pP]
+*.[sS][lL][dD][pP][rR][tT]
+*.[sS][lL][dD][aA][sS][mM]
+*.[oO][bB][jJ]
+*.[gG][lL][bB]
+*.[gG][lL][tT][fF]
+*.[rR][aA][rR]

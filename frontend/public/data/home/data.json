@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "badge": "Gençya Teknoloji Takımı",
+    "title": "İnsansız deniz araçlarında yeni ufuklar",
+    "titleHighlight": "yeni ufuklar",
+    "description": "Deniz teknolojilerinde yenilikçi çözümler üreten, insansız deniz araçları geliştiren öğrenci topluluğu. Mavi vatanımızda teknoloji ile birlikte ilerleyelim.",
+    "primaryButton": {
+      "text": "Üye Ol",
+      "href": "/apply/general"
+    },
+    "secondaryButton": {
+      "text": "Daha Fazla Bilgi",
+      "href": "/about"
+    },
+    "position": {
+      "label": "Başiskele · Kocaeli",
+      "coordinates": "40°43′K 29°57′D"
+    }
+  },
+  "clubIntroduction": {
+    "title": "Takım Tanıtımı",
+    "description": "Gençya Teknoloji olarak insansız deniz aracı teknolojilerinde fark yaratmayı, deniz sistemleri alanında bilgi paylaşımını artırmayı ve üyelerimize gerçek projeler üzerinden öğrenme fırsatı sunmayı amaçlıyoruz.",
+    "features": [
+      {
+        "title": "İnovasyon",
+        "description": "İnsansız su üstü (USV) ve su altı (AUV) araçlarının tasarımı ve geliştirilmesinde öncü çözümler üretiyoruz.",
+        "icon": "faShip"
+      },
+      {
+        "title": "Ar-Ge",
+        "description": "Otonom navigasyon, görüntü işleme, sensör entegrasyonu ve deniz robotiği konularında araştırma ve geliştirme çalışmaları yürütüyoruz.",
+        "icon": "faFlask"
+      },
+      {
+        "title": "Yarışmalar",
+        "description": "Deniz araçları yarışmalarına katılarak teorik bilgilerinizi pratiğe dökme ve deneyim kazanma fırsatı bulacaksınız.",
+        "icon": "faTrophy"
+      }
+    ]
+  },
+  "vehicle": {
+    "eyebrow": "İDA · insansız deniz aracı",
+    "title": "Üç takım, tek araç",
+    "description": "Geliştirme aşamasındaki trimaran gövdeli insansız su üstü aracımızın her alt sistemi bir takımımızın sorumluluğunda. Gövdeden güç dağıtımına kadar aracı birlikte tasarlıyor ve geliştiriyoruz.",
+    "image": null,
+    "subsystems": [
+      {
+        "anchor": "hull",
+        "title": "Gövde",
+        "description": "Orta gövde ve iki yan gövdeden oluşan trimaran yapı; dengeli ve geniş bir taşıma platformu sağlıyor.",
+        "team": "electronics"
+      },
+      {
+        "anchor": "mast",
+        "title": "Konumlama",
+        "description": "GNSS alıcısı ve IMU verilerini birleştirerek aracın konumunu ve yönelimini belirliyor, waypoint takibini sağlıyoruz.",
+        "team": "navigation"
+      },
+      {
+        "anchor": "camera",
+        "title": "Algılama",
+        "description": "Kamera görüntülerini OpenCV ve YOLO gibi araçlarla işleyerek nesne tanıma ve hedef takibi yapıyoruz.",
+        "team": "vision"
+      },
+      {
+        "anchor": "antenna",
+        "title": "Haberleşme",
+        "description": "Araç ile yer istasyonu arasındaki telemetri ve komut bağlantısını kuruyoruz.",
+        "team": "electronics"
+      },
+      {
+        "anchor": "propulsion",
+        "title": "İtki",
+        "description": "İticiler ve ESC motor sürücüleriyle aracın ilerleyişini ve dönüşünü kontrol ediyoruz.",
+        "team": "electronics"
+      },
+      {
+        "anchor": "power",
+        "title": "Güç",
+        "description": "LiPo batarya yönetimi ve güç dağıtımı için özel PCB tasarlıyoruz.",
+        "team": "electronics"
+      }
+    ],
+    "cta": {
+      "text": "Takımları incele",
+      "href": "/technical-team/navigation"
+    }
+  },
+  "announcements": {
+    "title": "Duyurular",
+    "description": "Gençya Teknoloji'nin önemli duyuruları ve yarışma haberlerimiz hakkında bilgi alın.",
+    "viewAllText": "Tüm Duyuruları Gör",
+    "viewAllHref": "/announcements"
+  },
+  "publications": {
+    "title": "Son Yayınlarımız",
+    "description": "Takım üyelerimizin kaleme aldığı teknik makaleler ve deniz teknolojilerine dair içerikler.",
+    "viewAllText": "Tüm Yayınları Gör",
+    "viewAllHref": "/publications"
+  }
+}

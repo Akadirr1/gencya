@@ -1,0 +1,297 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-plex-sans);
+  --font-display: var(--font-sora);
+  --font-mono: var(--font-plex-mono);
+  --shadow-sm: 0 6px 16px rgb(6 22 50 / 0.07);
+  --shadow-featured: 0 14px 30px rgb(6 22 50 / 0.14);
+  --shadow-cta: 0 10px 24px rgb(42 108 176 / 0.35);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  /* Marka renkleri Tailwind rengi olarak: bg-derin, text-camgobegi, bg-sinyal … */
+  --color-derin: var(--derin);
+  --color-gece: var(--gece);
+  --color-lacivert: var(--lacivert);
+  --color-mavi: var(--mavi);
+  --color-camgobegi: var(--camgobegi);
+  --color-kopuk: var(--kopuk);
+  --color-sinyal: var(--sinyal);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@theme {
+  /* Sonar taraması: tarama ışını tam tur döner. */
+  --animate-sweep: sweep 6s linear infinite;
+
+  @keyframes sweep {
+    to { transform: rotate(1turn); }
+  }
+
+  /* Sonar yankısı: halka merkezden büyüyüp söner (yükleniyor, şamandıralar). */
+  --animate-sonar: sonar 2.4s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+
+  @keyframes sonar {
+    0% { transform: scale(0.15); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+
+  /* Sinyal ışığı: canlı/aktif durum noktası. */
+  --animate-beacon: beacon 1.6s ease-in-out infinite;
+
+  @keyframes beacon {
+    50% { opacity: 0.25; }
+  }
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Marka renkleri (logodaki GY işaretinin gradyanından) */
+  --derin: #061632;     /* Derin deniz: koyu bant ve koyu tema zemini */
+  --gece: #0C2250;      /* Gece denizi: koyu temada kart */
+  --lacivert: #1B3F8F;  /* Logonun laciverti: birincil */
+  --mavi: #2A6CB0;      /* Logonun orta mavisi */
+  --camgobegi: #4CC0EE; /* Logonun camgöbeği: vurgu */
+  --kopuk: #DCEFF8;     /* Köpük: en açık */
+  --sinyal: #FF6B35;    /* Şamandıra turuncusu: yalnızca küçük sinyal noktaları, metinde değil */
+
+  /* GY işaretinin gradyanı (GencyaMark): açık zeminde logodaki renkler */
+  --mark-1: #5CC8F0;
+  --mark-2: #2A6CB0;
+  --mark-3: #0F2652;
+
+  /* Tema değişkenleri */
+  --background: #F4F8FC;
+  --foreground: #0A1A36;
+  --card: white;
+  --card-foreground: var(--foreground);
+  --popover: white;
+  --popover-foreground: var(--foreground);
+  --primary: var(--lacivert);
+  --primary-foreground: white;
+  --secondary: var(--mavi);
+  --secondary-foreground: white;
+  --muted: #E6EFF7;
+  --muted-foreground: #4A5E78;
+  --accent: var(--mavi);
+  --accent-foreground: white;
+  --destructive: #e11d48;
+  --border: #CCDAE7;
+  --input: #CCDAE7;
+  --ring: var(--mavi);
+  --chart-1: var(--derin);
+  --chart-2: var(--lacivert);
+  --chart-3: var(--mavi);
+  --chart-4: var(--camgobegi);
+  --chart-5: var(--kopuk);
+  --sidebar: white;
+  --sidebar-foreground: var(--derin);
+  --sidebar-primary: var(--lacivert);
+  --sidebar-primary-foreground: white;
+  --sidebar-accent: var(--mavi);
+  --sidebar-accent-foreground: white;
+  --sidebar-border: color-mix(in srgb, var(--lacivert) 18%, transparent);
+  --sidebar-ring: var(--mavi);
+}
+
+.dark {
+  /* Koyu zeminde logonun lacivert ucu kayboluyor: gradyan bir ton açılır. */
+  --mark-1: #8FDDF8;
+  --mark-2: #4CC0EE;
+  --mark-3: #2A6CB0;
+
+  --background: var(--derin);
+  --foreground: var(--kopuk);
+  --card: var(--gece);
+  --card-foreground: white;
+  --popover: var(--gece);
+  --popover-foreground: white;
+  --primary: var(--camgobegi);
+  --primary-foreground: var(--derin);
+  --secondary: #9ADCF7;
+  --secondary-foreground: var(--derin);
+  --muted: color-mix(in srgb, var(--gece) 60%, var(--derin));
+  --muted-foreground: #9DB9D6;
+  --accent: #9ADCF7;
+  --accent-foreground: var(--derin);
+  --destructive: #fb7185;
+  --border: color-mix(in srgb, white 11%, transparent);
+  --input: color-mix(in srgb, white 16%, transparent);
+  --ring: var(--camgobegi);
+  --chart-1: var(--kopuk);
+  --chart-2: var(--camgobegi);
+  --chart-3: var(--mavi);
+  --chart-4: var(--lacivert);
+  --chart-5: var(--gece);
+  --sidebar: var(--derin);
+  --sidebar-foreground: white;
+  --sidebar-primary: var(--camgobegi);
+  --sidebar-primary-foreground: var(--derin);
+  --sidebar-accent: #9ADCF7;
+  --sidebar-accent-foreground: var(--derin);
+  --sidebar-border: color-mix(in srgb, white 11%, transparent);
+  --sidebar-ring: var(--camgobegi);
+}
+
+/* Derin deniz bandı (hero, İDA bölümü): gradyan zemin ve üstünde batimetri (derinlik eğrisi)
+   haritası. İki temada aynı; içindeki GY işareti koyu temanın açık gradyanını kullanır. */
+@utility bg-deep {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--derin);
+  background-image:
+    radial-gradient(ellipse 60% 80% at 78% 38%, rgb(42 108 176 / 0.42), transparent 62%),
+    radial-gradient(ellipse 55% 55% at 6% 100%, rgb(76 192 238 / 0.12), transparent 70%),
+    linear-gradient(180deg, #0A2152 0%, var(--derin) 55%, #040F25 100%);
+  --mark-1: #8FDDF8;
+  --mark-2: #4CC0EE;
+  --mark-3: #2A6CB0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url("/pattern/bathymetry.svg") center / cover no-repeat;
+    mask-image: radial-gradient(ellipse 75% 85% at 72% 42%, #000 20%, transparent 78%);
+  }
+}
+
+/* Koyu bandın açık zemine dalgayla geçtiği kenar: önde dolu dalga, arkada yarı saydam ikinci
+   dalga. Renk var(--background), temayı izler. bottom-0 ya da top-0 rotate-180 ile. */
+@utility wave-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 48px;
+  pointer-events: none;
+  background-color: var(--background);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cpath d='M0 30C180 12 360 12 540 26s360 18 540 4 270-16 360-8v26H0z'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--background);
+    opacity: 0.35;
+    transform: translateY(-14px);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cpath d='M0 22c240 18 420 18 660 2s420-14 600 0 180 6 180 6v18H0z'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+  }
+}
+
+/* Seyir haritası ızgarası: açık bantlarda (zaman çizelgesi, bilgi kutuları) silik kareli zemin. */
+@utility bg-chart {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+/* Vizör köşeleri: kartın dört köşesinde kısa çizgiler (kamera/HUD çerçevesi). Renk --hud. */
+@utility hud-frame {
+  --hud: color-mix(in srgb, var(--primary) 60%, transparent);
+  background-image:
+    linear-gradient(var(--hud), var(--hud)), linear-gradient(var(--hud), var(--hud)),
+    linear-gradient(var(--hud), var(--hud)), linear-gradient(var(--hud), var(--hud)),
+    linear-gradient(var(--hud), var(--hud)), linear-gradient(var(--hud), var(--hud)),
+    linear-gradient(var(--hud), var(--hud)), linear-gradient(var(--hud), var(--hud));
+  background-size: 16px 1.5px, 1.5px 16px, 16px 1.5px, 1.5px 16px, 16px 1.5px, 1.5px 16px, 16px 1.5px, 1.5px 16px;
+  background-position: top left, top left, top right, top right, bottom left, bottom left, bottom right, bottom right;
+  background-repeat: no-repeat;
+}
+
+/* Birincil düğme: logonun lacivertinden mavisine. Üstünde her zaman text-white. */
+@utility bg-cta {
+  background-image: linear-gradient(135deg, var(--lacivert), #2A78C8);
+}
+
+/* Teknik etiket: kısa HUD/telemetri yazıları için mono, büyük harf, aralıklı. */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+  }
+  .container {
+    @apply mx-auto max-w-6xl px-4 w-full;
+  }
+}
+
+.rich-html {
+  /* İsterseniz tipografiyi burada yönetebilirsiniz */
+}
+
+/* UL madde işaretlerini kendimiz çizelim */
+.rich-html ul {
+  list-style: none;     /* tarayıcının varsayılan bullets'i kapat */
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.rich-html ul li {
+  position: relative;
+  padding-left: 1rem;   /* girinti */
+}
+
+.rich-html ul li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  color: var(--primary);  /* sizin örnekteki renk değişkeni */
+  padding-right: 0.25rem;
+}
+
+/* Link görselliği */
+.rich-html a {
+  color: var(--primary);
+  text-decoration: underline;
+}

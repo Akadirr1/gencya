@@ -1,0 +1,36 @@
+{
+  "slug": "vision",
+  "name": "Görüntü İşleme & Yapay Zeka Takımı",
+  "description": "Su altı ve su üstü kamera sistemleriyle görüntü işleme, nesne tanıma ve yapay zeka algoritmalarını geliştiren takımımız.",
+  "icon": "faEye",
+  "leaderMessage": {
+    "title": "Takım Mesajı",
+    "content": "Görüntü İşleme & Yapay Zeka Takımı olarak deniz araçlarımızın “gözleri” oluyoruz. Su altı ve su üstü kameralardan elde edilen görüntüleri işleyerek nesne tanıma, hedef takibi ve görsel odometri sistemleri geliştiriyoruz. OpenCV, TensorFlow ve PyTorch kullanarak derin öğrenme modelleri eğitiyor, gerçek zamanlı görüntü işleme uygulamaları yapıyoruz. Takımımız yapay zeka ve bilgisayarlı görü alanında deneyim kazanmak isteyen arkadaşları bekliyor.",
+    "author": "Semih Yalçın",
+    "role": "Görüntü İşleme & Yapay Zeka Takımı Üyesi"
+  },
+  "members": [
+    {
+      "name": "Semih Yalçın",
+      "role": "Üye",
+      "image": "/profile/teams/vision/semih_yalcin.jpeg",
+      "department": "Mekatronik Mühendisliği",
+      "github": "https://github.com/semih4641",
+      "linkedin": "",
+      "kaggle": "",
+      "skills": []
+    }
+  ],
+  "achievements": [],
+  "competitions": [],
+  "projects": [
+    {
+      "title": "Su Altı Nesne Tanıma Sistemi",
+      "description": "Derin öğrenme kullanarak su altı nesnelerini tespit eden ve sınıflandıran yapay zeka modeli.",
+      "technologies": ["Python", "TensorFlow", "OpenCV", "YOLO"],
+      "status": "Geliştirme Aşamasında",
+      "github": "",
+      "demo": null
+    }
+  ]
+}

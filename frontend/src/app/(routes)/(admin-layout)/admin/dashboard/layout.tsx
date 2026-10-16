@@ -1,0 +1,138 @@
+'use client';
+
+import React from 'react';
+import AdminSidebar from '@/components/layout/AdminSidebar';
+import { Sidebar, SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import useAuth, { type AuthUser } from '@/hooks/useAuth';
+import { usePathname, useRouter } from 'next/navigation';
+import { MailQueueProvider } from '@/contexts/MailQueueContext';
+import { GencyaMark, SonarLoader } from '@/components/layout/Brand';
+
+type DashboardLayoutProps = {
+  children: React.ReactNode;
+};
+
+export default function AdminDashboardLayout({ children }: DashboardLayoutProps) {
+  const router = useRouter();
+  const { isAuthenticated, getAuthDetail, logout } = useAuth();
+  const pathname = usePathname();
+
+  const [isChecking, setIsChecking] = React.useState(true);
+  const [hasStoredToken, setHasStoredToken] = React.useState<boolean | null>(null);
+
+  // İlk yüklemede localStorage'da token var mı bak
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const stored = window.localStorage.getItem('auth_token');
+      setHasStoredToken(Boolean(stored));
+    } catch {
+      setHasStoredToken(false);
+    }
+  }, []);
+
+  // Auth doğrulama akışı
+  React.useEffect(() => {
+    if (hasStoredToken === null) return; // hâlâ depodaki token kontrol ediliyor
+
+    let isMounted = true;
+
+    const verifyAuth = async () => {
+      // Depoda token yok ve state de authenticated değilse yönlendir
+      if (!isAuthenticated && !hasStoredToken) {
+        router.replace(`/admin/login?redirect=${encodeURIComponent(pathname ?? '/admin/dashboard')}`);
+        return;
+      }
+
+      // Token var ve state authenticated ise detay kontrolü yap
+      if (isAuthenticated) {
+        const detail = await getAuthDetail();
+        if ('error' in detail) {
+          router.replace(`/admin/login?redirect=${encodeURIComponent(pathname ?? '/admin/dashboard')}`);
+          return;
+        }
+        // Rol kontrolü
+        const role = (detail as AuthUser).role;
+        // Admin rolü her sayfaya erişebilir
+        if (role === 'admin') {
+          if (isMounted) setIsChecking(false);
+          return;
+        }
+        
+        // Teknik takım rolleri yalnızca kendi teknik sayfasına erişebilir; dashboard'daki
+        // özet sayılar (GET /auth/status) yalnızca admin içindir
+        if (['navigation', 'vision', 'electronics'].includes(role)) {
+          const isOwnTechnicalPage = pathname?.startsWith(`/admin/dashboard/technical-team/${role}`);
+          if (!isOwnTechnicalPage) {
+            router.replace(`/admin/dashboard/technical-team/${role}`);
+            return;
+          }
+          if (isMounted) setIsChecking(false);
+          return;
+        }
+
+        // Sponsor rolü yalnızca sponsor-mail sayfasına erişebilir
+        if (role === 'sponsor') {
+          const isSponsorMailPage = pathname === '/admin/dashboard/sponsor-mail';
+          if (!isSponsorMailPage) {
+            router.replace('/admin/dashboard/sponsor-mail');
+            return;
+          }
+          if (isMounted) setIsChecking(false);
+          return;
+        }
+
+        // Panelde sayfası olmayan rol (ör. user): oturum kapatılır. Yalnızca
+        // yönlendirmek giriş sayfasıyla döngü yapardı (geçerli token'ı dashboard'a atıyor).
+        if (!isMounted) return;
+        logout();
+        router.replace('/admin/login?yetkisiz=1');
+        return;
+      }
+
+      // Buraya gelindiyse depoda token var ama state hydrate olmadı; bekle
+      // isAuthenticated değiştiğinde efekt tekrar çalışacak
+    };
+
+    void verifyAuth();
+    return () => {
+      isMounted = false;
+    };
+  }, [getAuthDetail, hasStoredToken, isAuthenticated, logout, router, pathname]);
+
+  if (isChecking) {
+    return (
+      <div className="grid min-h-screen place-items-center">
+        <SonarLoader label="Panel yükleniyor" />
+      </div>
+    );
+  }
+
+  return (
+    <SidebarProvider>
+      <MailQueueProvider>
+        <div className="mx-auto w-full max-w-screen-xl px-4 py-6">
+          <div className="flex gap-4">
+            <Sidebar side="left" variant="sidebar" collapsible="offcanvas" className="border-r">
+              <AdminSidebar />
+            </Sidebar>
+            <SidebarInset className="min-h-[60vh]">
+              <div className="flex items-center gap-2 p-2 md:hidden">
+                <SidebarTrigger />
+                {/* Sidebar'daki marka; sayfanın kendi h1'i var */}
+                <span className="flex items-center gap-2">
+                  <GencyaMark className="h-6" />
+                  <span className="flex flex-col leading-none">
+                    <span className="font-display text-[15px] font-bold tracking-[0.08em]">GENÇYA</span>
+                    <span className="mt-1 font-mono text-[8.5px] uppercase tracking-[0.24em] text-muted-foreground">Yönetim Paneli</span>
+                  </span>
+                </span>
+              </div>
+              {children}
+            </SidebarInset>
+          </div>
+        </div>
+      </MailQueueProvider>
+    </SidebarProvider>
+  );
+}

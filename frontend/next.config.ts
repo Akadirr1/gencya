@@ -1,0 +1,73 @@
+import path from "node:path";
+import type { NextConfig } from "next";
+
+// XSS'e karşı ikinci savunma hattı. Next hidrasyon için satır içi script
+// kullandığından script-src 'unsafe-inline' şart (nonce, tüm sayfaları dinamik
+// render'a zorlar); yine de dış script yüklemeyi, API dışındaki adreslere
+// istek atmayı, yabancı görseli ve sitenin iframe'e gömülmesini engeller.
+// Yeni bir dış kaynak (script, iframe, API adresi) eklenirse buraya da
+// eklenmeli; yoksa tarayıcı onu konsola hata yazarak engeller.
+// Cloudflare Web Analytics: Cloudflare her HTML yanıtına beacon betiğini ekliyor;
+// betik static.cloudflareinsights.com'dan gelir, veriyi cloudflareinsights.com'a gönderir.
+const apiOrigin = process.env.NEXT_PUBLIC_API_URL ? new URL(process.env.NEXT_PUBLIC_API_URL).origin : '';
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com${process.env.NODE_ENV === 'development' ? " 'unsafe-eval'" : ''}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self'",
+  `connect-src 'self' ${apiOrigin} https://cloudflareinsights.com`,
+  "frame-src https://www.google.com",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
+const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  // next dev her açılışta frontend/AGENTS.md yazıyor; repoya girmesin.
+  agentRules: false,
+  // Turbopack workspace kökünü ağaçta yukarı doğru lockfile arayarak tahmin
+  // ediyor. Geliştiricinin ev dizininde başıboş bir package-lock.json varsa
+  // kökü oraya çözüyor. Kökü açıkça sabitliyoruz ki build makineden bağımsız
+  // olsun.
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
+  experimental: {
+    // Next 16.3 Turbopack'in build cache'ini .next/cache'e kalıcı yazıyor;
+    // Coolify (Nixpacks) de bu klasörü deploy'lar arasında saklıyor. Turbopack,
+    // PostCSS worker'ında yüklenen native modülü (lightningcss) bağımlılık
+    // olarak izlemediği için eksik paketle düşen tek bir build'in hatası cache'e
+    // yazılıp sonraki her deploy'da tekrar oynatılıyordu. 16.2'deki gibi kapalı.
+    turbopackFileSystemCacheForBuild: false,
+  },
+  images: {
+    // Backend yalnızca Medium CDN'deki kapak görsellerini döndürüyor
+    // (publicationsController). Daha geniş bir kalıp, görsel optimizer'ı
+    // medium.com'un her alt alan adı için bir proxy'ye çeviriyordu.
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn-images-*.medium.com',
+      }
+    ],
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'Content-Security-Policy', value: contentSecurityPolicy },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          // frame-ancestors'ı tanımayan eski tarayıcılar için
+          { key: 'X-Frame-Options', value: 'DENY' },
+        ],
+      },
+    ];
+  },
+};
+
+export default nextConfig;

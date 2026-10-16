@@ -1,0 +1,116 @@
+# .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches:
+      # Varsayılan branch henüz master; last ya da main'e geçince de koşsun.
+      - main
+      - master
+      - last
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Production (Coolify/Nixpacks) Node 22.11.0 ile çalışıyor. Bu sürümde require(esm)
+# bayraksız kapalı; sanitize-html 2.17.6+ ise yalnızca ESM olan htmlparser2 12'yi
+# require ediyor. Backend bu yüzden `npm start` ile --experimental-require-module
+# bayrağıyla açılıyor. CI aynı Node sürümü ve aynı komutla koşmazsa bu tür bir hata
+# burada geçip production'da açılışta çöker. Production'ın Node sürümü değişirse
+# burası da değişmeli.
+env:
+  NODE_VERSION: 22.11.0
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: npm
+        cache-dependency-path: frontend/package-lock.json
+
+    # Bağımlılık istemiyor; en hızlı kırmızıyı veren kontrol önce.
+    - run: npm run check:content
+    - run: npm ci
+    - run: npm run lint
+    # API'ye erişilemezken build: sayfalar build anında API'ye bağımlı olmamalı.
+    - run: npm run build
+      env:
+        NEXT_PUBLIC_API_URL: http://127.0.0.1:3001
+
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: backend
+
+    # Her koşuda sıfırdan, iş bitince silinen veritabanı: loadtest --submit burada güvenli.
+    services:
+      mongo:
+        image: mongo:8
+        ports:
+          - 27017:27017
+
+    env:
+      MONGODB_URI: mongodb://127.0.0.1:27017/ci
+      # Yalnızca bu geçici veritabanı için: windows-smoke ilk admini KEY ile
+      # oluşturup giriş yapıyor. KEY en az 32 karakter.
+      JWT_SECRET: ci-jwt-secret
+      KEY: ci-ilk-admin-anahtari-0123456789abcdef
+
+    steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: npm
+        cache-dependency-path: backend/package-lock.json
+
+    - run: npm ci
+    # Birim testleri (node:test, bağımlılık yok): **/*.test.js
+    - run: node --test
+    # `node --check` ESM hatalarını kaçırıyor (CLAUDE.md); sunucuyu production'daki
+    # komutla (npm start) gerçekten ayağa kaldır.
+    - run: nohup npm start > server.log 2>&1 &
+    - run: timeout 30 bash -c 'until curl -sf 127.0.0.1:3001/health > /dev/null; do sleep 1; done'
+    # Başvuru dönemleri: GET/PATCH /submissions/windows, yetki, kapalı forma 403.
+    # Boş veritabanı ister ve genel formu açık bırakır. loadtest'ten önce koşmalı,
+    # sonrasında form limiti dolmuş olur.
+    - run: node scripts/windows-smoke.js
+    # Formların kendi limiti var (15 dk'da 100, genel limite sayılmaz):
+    # --submit 40 → 40×201 (smoke önce 7 form isteği harcıyor). Genel limit
+    # (15 dk'da 100) /health'e.
+    - run: node scripts/loadtest.js --submit --n 40
+    - run: node scripts/loadtest.js --n 100
+    - if: failure()
+      run: cat server.log
+
+  # Ayrı job: yeni bir advisory yayınlandığında build ve smoke sonuçları görünür
+  # kalır. npm audit yalnızca lockfile'ı okur, npm ci gerekmez. Dev araçları
+  # (eslint vb.) production'a çıkmadığı için --omit=dev.
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        dir: [frontend, backend]
+
+    steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
+      with:
+        node-version: 22
+    - run: npm audit --omit=dev --audit-level=high
+      working-directory: ${{ matrix.dir }}

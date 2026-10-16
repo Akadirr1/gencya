@@ -1,0 +1,51 @@
+{
+  "slug": "navigation",
+  "name": "Otonom Navigasyon Takımı",
+  "description": "GPS, IMU ve sensör entegrasyonu ile insansız deniz araçlarının otonom hareket sistemlerini geliştiren takımımız.",
+  "icon": "faCompass",
+  "leaderMessage": {
+    "title": "Takım Lideri Mesajı",
+    "content": "Otonom Navigasyon Takımı olarak insansız deniz araçlarının bağımsız hareket edebilmesi için gerekli yazılım ve algoritmaları geliştiriyoruz. GPS, IMU, pusula ve diğer sensörlerden gelen verileri işleyerek waypoint takibi, engel algılama ve otonom görev yürütme sistemleri üzerinde çalışıyoruz. Python, C++ ve ROS kullanarak gerçek zamanlı navigasyon çözümleri üretiyoruz.",
+    "author": "Abdülkadir İvenç",
+    "role": "Otonom Navigasyon Takımı Lideri"
+  },
+  "members": [
+    {
+      "name": "Abdülkadir İvenç",
+      "role": "Takım Lideri",
+      "image": "/profile/teams/navigation/abdulkadir_ivenc.jpeg",
+      "department": "Yazılım Mühendisliği",
+      "github": "https://github.com/Akadirr1",
+      "linkedin": "https://www.linkedin.com/in/abd%C3%BClkadir-iven%C3%A7-66a4ab288/",
+      "kaggle": "",
+      "skills": []
+    },
+    {
+      "name": "Ömer Mete Aydın",
+      "role": "Üye",
+      "image": "/profile/teams/navigation/omer_mete_aydin.jpeg",
+      "department": "Yazılım Mühendisliği",
+      "github": "https://github.com/omermeteaydin",
+      "linkedin": "",
+      "kaggle": "",
+      "skills": []
+    }
+  ],
+  "achievements": [],
+  "competitions": [],
+  "projects": [
+    {
+      "title": "USV Otonom Navigasyon Sistemi",
+      "description": "İnsansız su üstü aracı için waypoint takibi ve otonom navigasyon sistemi.",
+      "technologies": [
+        "Python",
+        "ROS",
+        "GPS",
+        "IMU"
+      ],
+      "status": "Geliştirme Aşamasında",
+      "github": "",
+      "demo": null
+    }
+  ]
+}

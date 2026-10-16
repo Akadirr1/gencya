@@ -1,0 +1,64 @@
+{
+  "slug": "electronics",
+  "name": "Elektronik & Mekanik Takımı",
+  "description": "Araç tasarımı, elektronik devre, güç yönetimi ve mekanik sistem geliştiren takımımız.",
+  "icon": "faMicrochip",
+  "leaderMessage": {
+    "title": "Takım Lideri Mesajı",
+    "content": "Elektronik & Mekanik Takımı olarak insansız deniz araçlarının fiziksel altyapısını oluşturuyoruz. Araç tasarımından motor kontrolüne, güç yönetiminden sensör entegrasyonuna kadar tüm donanımsal sistemleri geliştiriyoruz. Su geçirmez gövde tasarımları, ESC motor sürücüleri, güç dağıtım sistemleri ve PCB tasarımları yapıyoruz. SolidWorks, Arduino, STM32 gibi araçları kullanarak dayanıklı ve verimli deniz araçları üretiyoruz.",
+    "author": "Abdullah Eren Keskin",
+    "role": "Elektronik Takımı Yöneticisi"
+  },
+  "members": [
+    {
+      "name": "Abdullah Eren Keskin",
+      "role": "Elektronik Takımı Yöneticisi",
+      "image": "/profile/teams/electronics/abdullah_eren_keskin.jpeg",
+      "department": "Elektronik ve Haberleşme Mühendisliği",
+      "github": "",
+      "linkedin": "",
+      "kaggle": "",
+      "skills": []
+    },
+    {
+      "name": "Hamza Tarı",
+      "role": "Mekanik Takımı Yöneticisi",
+      "image": "/profile/teams/electronics/hamza_tari.jpeg",
+      "department": "Mekatronik Mühendisliği",
+      "github": "",
+      "linkedin": "",
+      "kaggle": "",
+      "skills": []
+    },
+    {
+      "name": "Doğukan Tanrıverdi",
+      "role": "Üye",
+      "image": "/profile/teams/electronics/dogukan_tanriverdi.jpeg",
+      "department": "Elektrik ve Elektronik Haberleşme",
+      "github": "",
+      "linkedin": "",
+      "kaggle": "",
+      "skills": []
+    }
+  ],
+  "achievements": [],
+  "competitions": [],
+  "projects": [
+    {
+      "title": "USV Gövde Tasarımı",
+      "description": "Su üstü insansız aracı için optimize edilmiş trimaran gövde tasarımı.",
+      "technologies": ["SolidWorks", "3B Baskı", "Cam Elyaf"],
+      "status": "Geliştirme Aşamasında",
+      "github": "",
+      "demo": null
+    },
+    {
+      "title": "Güç Yönetim Sistemi",
+      "description": "LiPo batarya yönetimi ve güç dağıtımı için özel PCB tasarımı.",
+      "technologies": ["KiCAD", "Arduino", "Güç Elektroniği"],
+      "status": "Geliştirme Aşamasında",
+      "github": "",
+      "demo": null
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "pageContent": {
+    "missionVision": {
+      "title": "Misyon & Vizyon",
+      "mission": {
+        "title": "Misyonumuz",
+        "description": "Gençya Teknoloji Takımı'nın misyonu, öğrencilerin deniz teknolojileri ve otonom sistemler alanındaki bilgi birikimlerini artırarak uygulamalı projeler geliştirmelerine imkân tanımaktır."
+      },
+      "vision": {
+        "title": "Vizyonumuz",
+        "description": "Gençya Teknoloji Takımı'nın vizyonu, öğrencilerin deniz teknolojilerindeki yenilikleri takip edebileceği ve yaratıcı insansız araç projeleri geliştirebileceği bir ortam sunmaktır."
+      }
+    },
+    "boardMembers": {
+      "title": "Yönetim Kurulu",
+      "description": "Gençya Teknoloji'nin yönetimini üstlenen, yarışma ve projeleri planlayan ekibimiz."
+    },
+    "timeline": {
+      "title": "Tarihçemiz",
+      "description": "Kurulduğumuz günden bugüne kadar olan yolculuğumuzdaki önemli kilometre taşları."
+    },
+    "focusAreas": {
+      "title": "Çalışma Alanlarımız",
+      "description": "Üyelerimizin odaklandığı ve projeler geliştirdiğimiz çalışma alanları."
+    },
+    "cta": {
+      "title": "Bize Katılın",
+      "description": "Gençya Teknoloji'de sadece robot yapmıyoruz; fikir üretiyor, araştırıyor ve yenilik yapıyoruz.",
+      "buttonText": "Başvuru Yap",
+      "href": "/apply/general"
+    }
+  },
+  "emblem": {
+    "image": "/brand/gencya-arma-2024.jpg",
+    "alt": "Gençya Teknoloji Takımı 2024 arması",
+    "caption": "Takımımızın 2024 arması"
+  },
+  "boardMembers": [
+    {
+      "name": "Abdullah Eren Keskin",
+      "role": "Dernek Başkanı",
+      "image": "/profile/teams/electronics/abdullah_eren_keskin.jpeg",
+      "department": "Elektronik ve Haberleşme Mühendisliği",
+      "github": "",
+      "linkedin": ""
+    },
+    {
+      "name": "Hamza Tarı",
+      "role": "Takım Kaptanı",
+      "image": "/profile/teams/electronics/hamza_tari.jpeg",
+      "department": "Mekatronik Mühendisliği",
+      "github": "",
+      "linkedin": ""
+    },
+    {
+      "name": "Salih Göksu",
+      "role": "Takım Kaptanı",
+      "image": "/profile/boardMembers/salih_goksu.jpeg",
+      "department": "Uçak Mühendisliği",
+      "github": "",
+      "linkedin": ""
+    },
+    {
+      "name": "Abdülkadir İvenç",
+      "role": "Web Kurucusu",
+      "image": "/profile/teams/navigation/abdulkadir_ivenc.jpeg",
+      "department": "Yazılım Mühendisliği",
+      "github": "https://github.com/Akadirr1",
+      "linkedin": "https://www.linkedin.com/in/abd%C3%BClkadir-iven%C3%A7-66a4ab288/"
+    }
+  ],
+  "timelineEvents": [
+    {
+      "year": "2025 - Ekim",
+      "title": "Gençya Teknoloji Kuruldu",
+      "description": "İnsansız deniz araçları alanında yenilikçi çözümler üretmek amacıyla Gençya Teknoloji kuruldu."
+    }
+  ],
+  "focusAreas": [
+    {
+      "title": "Otonom Navigasyon",
+      "description": "GPS, IMU ve diğer sensörleri kullanarak insansız deniz araçlarının otonom hareket sistemlerini geliştiriyoruz.",
+      "icon": "faCompass",
+      "team": "navigation"
+    },
+    {
+      "title": "Görüntü İşleme",
+      "description": "Su altı ve su üstü kamera sistemleriyle nesne tanıma ve hedef takibi yapıyoruz.",
+      "icon": "faEye",
+      "team": "vision"
+    },
+    {
+      "title": "Elektronik & Mekanik",
+      "description": "Araçlarımızın mekanik tasarımını, güç yönetimini ve sensör entegrasyonunu geliştiriyoruz.",
+      "icon": "faMicrochip",
+      "team": "electronics"
+    }
+  ]
+}

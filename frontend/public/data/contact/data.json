@@ -1,0 +1,42 @@
+{
+  "pageContent": {
+    "title": "İletişim",
+    "description": "Gençya Teknoloji ile ilgili sorularınız veya iş birliği teklifleriniz için bizimle iletişime geçebilirsiniz. Formun doldurulmasının ardından en kısa sürede geri dönüş yapacağız."
+  },
+  "contactInfo": {
+    "address": {
+      "title": "Adres",
+      "content": "Başiskele Türkiye Yüzyılı Gençlik Merkezi\nBaşiskele, Kocaeli"
+    },
+    "email": {
+      "title": "E-posta",
+      "content": "gencyateknolojitakimi@gmail.com"
+    },
+    "socialMedia": {
+      "title": "Sosyal Medya",
+      "description": "Sosyal medya hesaplarımızı takip ederek güncel proje ve duyurularımızdan haberdar olabilirsiniz.",
+      "links": [
+        {
+          "platform": "GitHub",
+          "url": "https://github.com/Akadirr1",
+          "ariaLabel": "GitHub"
+        },
+        {
+          "platform": "LinkedIn",
+          "url": "https://www.linkedin.com/in/gencya-technology-team-974325346/",
+          "ariaLabel": "LinkedIn"
+        },
+        {
+          "platform": "Instagram",
+          "url": "https://www.instagram.com/p/DFXZacNtpNf/",
+          "ariaLabel": "Instagram"
+        }
+      ]
+    }
+  },
+  "map": {
+    "title": "Konumumuz",
+    "description": "Gençya Teknoloji'nin bulunduğu konum aşağıdaki haritada işaretlenmiştir.",
+    "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.861874018179!2d29.948338499999995!3d40.72105709999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cb450039145361%3A0x85249f2cc71debf6!2zQmHFn2lza2VsZSBUw7xya2l5ZSBZw7x6ecSxbMSxIEdlbsOnbGlrIE1lcmtlemk!5e0!3m2!1str!2str!4v1771678985914!5m2!1str!2str"
+  }
+}

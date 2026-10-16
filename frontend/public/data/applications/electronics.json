@@ -1,0 +1,163 @@
+{
+  "id": 4,
+  "submissionType": "technical",
+  "slug": "electronics",
+  "title": "Elektronik & Mekanik Takımı Başvurusu",
+  "description": "Araç tasarımı, elektronik devre ve güç sistemleri geliştirmek için başvuru formu. Takıma katılmak için lütfen aşağıdaki bilgileri eksiksiz doldurunuz.",
+  "type": "technical",
+  "icon": "faMicrochip",
+  "fields": [
+    {
+      "id": "name",
+      "label": "Ad",
+      "type": "text",
+      "placeholder": "Adınızı giriniz",
+      "required": true
+    },
+    {
+      "id": "surname",
+      "label": "Soyad",
+      "type": "text",
+      "placeholder": "Soyadınızı giriniz",
+      "required": true
+    },
+    {
+      "id": "studentId",
+      "label": "Öğrenci Numarası",
+      "type": "text",
+      "placeholder": "Öğrenci numaranızı giriniz",
+      "required": true
+    },
+    {
+      "id": "email",
+      "label": "E-posta",
+      "type": "email",
+      "placeholder": "E-posta adresinizi giriniz",
+      "required": true
+    },
+    {
+      "id": "phone",
+      "label": "Telefon Numarası",
+      "type": "tel",
+      "placeholder": "Telefon numaranızı giriniz",
+      "required": true
+    },
+    {
+      "id": "faculty",
+      "label": "Fakülte",
+      "type": "text",
+      "placeholder": "Fakültenizi giriniz",
+      "required": true
+    },
+    {
+      "id": "department",
+      "label": "Bölüm",
+      "type": "text",
+      "placeholder": "Bölümünüzü giriniz",
+      "required": true
+    },
+    {
+      "id": "grade",
+      "label": "Sınıf",
+      "type": "select",
+      "required": true,
+      "options": [
+        {
+          "value": "",
+          "label": "Seçiniz"
+        },
+        {
+          "value": "1",
+          "label": "1. Sınıf"
+        },
+        {
+          "value": "2",
+          "label": "2. Sınıf"
+        },
+        {
+          "value": "3",
+          "label": "3. Sınıf"
+        },
+        {
+          "value": "4",
+          "label": "4. Sınıf"
+        },
+        {
+          "value": "5",
+          "label": "Yüksek Lisans"
+        },
+        {
+          "value": "6",
+          "label": "Doktora"
+        }
+      ]
+    },
+    {
+      "id": "interests",
+      "label": "İlgilendiğiniz Elektronik/Mekanik Alanları",
+      "type": "select",
+      "required": true,
+      "options": [
+        {
+          "value": "",
+          "label": "Seçiniz"
+        },
+        {
+          "value": "mechanical",
+          "label": "Mekanik Tasarım (CAD, SolidWorks)"
+        },
+        {
+          "value": "electronics",
+          "label": "Elektronik Devre Tasarımı"
+        },
+        {
+          "value": "pcb",
+          "label": "PCB Tasarımı"
+        },
+        {
+          "value": "embedded",
+          "label": "Gömülü Sistemler (Arduino, STM32)"
+        },
+        {
+          "value": "power",
+          "label": "Güç Elektroniği"
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "label": "GitHub profil linkiniz (opsiyonel)",
+      "type": "url",
+      "placeholder": "https://github.com/kullaniciadi",
+      "required": false
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn profil linkiniz (opsiyonel)",
+      "type": "url",
+      "placeholder": "https://www.linkedin.com/in/kullaniciadi",
+      "required": false
+    },
+    {
+      "id": "portfolio",
+      "label": "Portfolyo/Proje URL (varsa)",
+      "type": "url",
+      "placeholder": "Tasarım veya projelerinizin URL'ini giriniz",
+      "required": false
+    },
+    {
+      "id": "experience",
+      "label": "Elektronik/Mekanik Deneyiminiz",
+      "type": "textarea",
+      "placeholder": "Daha önce çalıştığınız projeler, kullandığınız araçlar (SolidWorks, KiCAD, Arduino vb.) ve deneyimleriniz hakkında bilgi veriniz.",
+      "required": true
+    },
+    {
+      "id": "motivation",
+      "label": "Neden Elektronik & Mekanik Takımı'na katılmak istiyorsunuz?",
+      "type": "textarea",
+      "placeholder": "Motivasyonunuzu kısaca açıklayınız.",
+      "required": true
+    }
+  ]
+}
