@@ -69,7 +69,7 @@ const keyGenerator = (req) => ipKeyGenerator(clientIp(req));
 // gibi paylaşılan bir IP'de genel limit dolunca herkes formları kapalı görür ve
 // başvuramazdı. Durum isteği (GET /submissions/windows) her başvuru sayfası
 // açılışında gidiyor: IP başına 15 dk'da 600. Başvuru ve iletişim formları
-// birlikte 15 dk'da 100; aynı öğrenci no/e-posta/telefon tekrarı ayrıca 409.
+// birlikte 15 dk'da 100; aynı e-posta/telefon tekrarı ayrıca 409.
 const windowsLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 600,

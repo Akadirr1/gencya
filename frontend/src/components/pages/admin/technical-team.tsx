@@ -370,7 +370,7 @@ export default function AdminTechnicalTeam({ category }: { category?: string }) 
                     {selectedSubmission ? (
                         <div className="grid grid-cols-2 gap-3 text-sm">
                             {[
-                                { label: "Üniversite", value: selectedSubmission.university },
+                                { label: "Üniversite", value: selectedSubmission.university ?? "" },
                                 { label: "Ad Soyad", value: selectedSubmission.name },
                                 { label: "E-posta", value: selectedSubmission.email },
                                 { label: "Telefon", value: selectedSubmission.phone },
