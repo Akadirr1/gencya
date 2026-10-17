@@ -11,7 +11,7 @@ export type SubmissionResponse = {
 
 export type BaseSubmissionData = {
   name: string;
-  studentId: string;
+  university: string;
   email: string;
   phone: string;
   faculty: string;
@@ -24,7 +24,7 @@ export type SubmissionListItem = {
   _id: string;
   submissionType: 'general' | 'technical';
   name: string;
-  studentId: string;
+  university?: string;
   email: string;
   phone: string;
   faculty: string;

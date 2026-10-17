@@ -1,7 +1,7 @@
 // Başvuru (submissions) kayıtlarını kalıcı olarak siler.
 //
-// Silinen kayıtlar başvuranların kişisel verilerini içerir (ad, soyad, öğrenci
-// numarası, e-posta, telefon). Silme GERİ ALINAMAZ, bu yüzden betik silmeden
+// Silinen kayıtlar başvuranların kişisel verilerini içerir (ad, soyad, üniversite
+// (eski kayıtlarda öğrenci numarası), e-posta, telefon). Silme GERİ ALINAMAZ, bu yüzden betik silmeden
 // önce her zaman diske JSON yedek yazar, yedeği geri okuyup doğrular ve
 // doğrulayamazsa silmeye hiç geçmez. Yedeksiz silme yolu bilerek yoktur.
 //

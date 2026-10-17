@@ -190,7 +190,7 @@ export default function ApplyDetail(props: { slug: string }) {
       
       // Temel alanları ekle
       if (data.name) submissionData.name = `${data.name} ${data.surname || ''}`.trim();
-      if (data.studentId) submissionData.studentId = data.studentId;
+      if (data.university) submissionData.university = data.university;
       if (data.email) submissionData.email = data.email;
       if (data.phone) submissionData.phone = data.phone;
       if (data.faculty) submissionData.faculty = data.faculty;
@@ -204,7 +204,7 @@ export default function ApplyDetail(props: { slug: string }) {
       
       // Diğer tüm alanları ekstra sorular olarak ekle
       Object.keys(data).forEach(key => {
-        if (!['name', 'surname', 'studentId', 'email', 'phone', 'faculty', 'department', 'grade'].includes(key)) {
+        if (!['name', 'surname', 'university', 'email', 'phone', 'faculty', 'department', 'grade'].includes(key)) {
           submissionData[`question_${key}`] = data[key];
         }
       });

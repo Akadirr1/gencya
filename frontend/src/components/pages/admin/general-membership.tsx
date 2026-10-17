@@ -246,7 +246,7 @@ export default function AdminGeneralMembership() {
                     <Input
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
-                        placeholder="Ara: isim, numara, e-posta..."
+                        placeholder="Ara: isim, e-posta, üniversite..."
                         className="flex-1"
                         aria-label="Genel başvurular arama"
                     />
@@ -287,8 +287,8 @@ export default function AdminGeneralMembership() {
                     submissions.map((item) => (
                         <Card key={item._id} className="flex items-center justify-between px-4 py-3">
                             <div className="grid w-full grid-cols-12 items-center gap-2">
-                                <div className="hidden md:block md:col-span-3 truncate text-sm font-medium" aria-label="Öğrenci numarası">
-                                    {item.studentId}
+                                <div className="hidden md:block md:col-span-3 truncate text-sm font-medium" aria-label="Üniversite">
+                                    {item.university}
                                 </div>
                                 <div className="col-span-7 md:col-span-6 truncate text-sm" aria-label="Ad soyad">
                                     {isMobile && item.name.length > 12 ? item.name.slice(0, 12) + "..." : item.name}
@@ -364,7 +364,7 @@ export default function AdminGeneralMembership() {
                     {selectedSubmission ? (
                         <div className="grid grid-cols-2 gap-3 text-sm">
                             {[
-                                { label: "Öğrenci No", value: selectedSubmission.studentId },
+                                { label: "Üniversite", value: selectedSubmission.university ?? "" },
                                 { label: "Ad Soyad", value: selectedSubmission.name },
                                 { label: "E-posta", value: selectedSubmission.email },
                                 { label: "Telefon", value: selectedSubmission.phone },

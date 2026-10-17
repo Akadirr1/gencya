@@ -264,7 +264,7 @@ console.log('\napplications/*.json — basvuru formlari ↔ backend');
   // applyDetail.tsx kisisel alanlar disindaki her alani `question_<id>` olarak
   // gonderir. Backend yalnizca allowedCustomFields'i kabul eder: eksik anahtar her
   // gonderimde 400 doner, ama build ve form ekranda normal gorunur.
-  const PERSONAL = ['name', 'surname', 'studentId', 'email', 'phone', 'faculty', 'department', 'grade'];
+  const PERSONAL = ['name', 'surname', 'university', 'email', 'phone', 'faculty', 'department', 'grade'];
   const read = (p) => (existsSync(p) ? readFileSync(p, 'utf8') : '');
   const allowed = read(join(ROOT, '..', 'backend', 'controllers', 'submissionsController.js'))
     .match(/allowedCustomFields\s*=\s*\[([^\]]*)\]/)?.[1].match(/question_[a-z0-9_]+/g);
