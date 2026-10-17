@@ -20,6 +20,8 @@ Kökte `package.json` yok; iki ayrı paket var:
 - `backend/`: Node.js, Express, MongoDB (Mongoose), JWT. Ayrıntılar: [`backend/README.md`](backend/README.md), [`backend/ENDPOINTS.md`](backend/ENDPOINTS.md)
 - `frontend/`: Next.js 16, React, TypeScript, Tailwind CSS v4, shadcn/ui, FontAwesome. Ayrıntılar: [`frontend/README.md`](frontend/README.md)
 
+`dernek/` ise Genç Yarınlar Derneği'nin [gencya.org](https://gencya.org) adresindeki statik sitesi (HTML + CSS, build yok).
+
 Site içeriği (ana sayfa, hakkımızda, takımlar, formlar, KVKK) `frontend/public/data/` altındaki JSON dosyalarında.
 
 ## Gereksinimler

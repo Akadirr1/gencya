@@ -13,7 +13,8 @@ düzeltilen bir altyapı hatası buraya da taşınmalı (ve tersi).
 
 Monorepo, kökte `package.json` yok: `frontend/` (Next.js 16) + `backend/` (Express.js +
 MongoDB). Deploy repo dışında; repoda yalnızca CI (`.github/workflows/ci.yml`) var. Adresler
-`https://gencya.org.tr` ve `https://api.gencya.org.tr`.
+`https://gencya.org.tr` ve `https://api.gencya.org.tr`. Ayrıca `dernek/`: derneğin statik
+sitesi (`https://gencya.org`), bkz. "Dernek sitesi".
 
 ## Komutlar
 
@@ -163,6 +164,31 @@ takım/form yönetimi kaldırıldı).
   `leaderMessage.author`, görseller `public/profile/teams/<takım>/`
 - Başvuru formları: `applications/<slug>.json`
 - KVKK aydınlatma metni (`/kvkk`): `kvkk/data.json`
+
+### Dernek sitesi (`dernek/`)
+
+`https://gencya.org`: Genç Yarınlar Derneği'nin tek sayfalık sitesi. Teknoloji takımının
+sitesiyle ortak kodu yok. Statik: `index.html` + `styles.css` + `script.js` + `fonts/` ve
+ikonlar; build, npm paketi ve backend yok, sunucu klasörü olduğu gibi kökten servis eder.
+Form yok (e-posta ve Instagram bağlantısı), kişisel veri toplanmadığı için KVKK sayfası da
+yok; forma alan eklenirse aydınlatma metni gerekir.
+
+- Tasarım: fildişi kâğıt, lacivert, altın; Cinzel (büyük harf etiketler), Cormorant Garamond
+  (başlıklar), Source Sans 3 (gövde), üçü de `fonts/` altında latin + latin-ext. Renkler
+  `styles.css` başındaki belirteçlerde; altın `#B4904A` açık zeminde yalnızca süs, altın metin
+  `--gold-ink`.
+- Logo yolları `index.html` başındaki `<svg class="defs">` sembollerinde (`s-amblem`,
+  `s-logo`, `s-yazi`, `s-dugum`); sayfa onları `<use>` ile çağırır. Yeni kimlik bölümü
+  amblemin parçalarına `#p-<parça>` kimlikleriyle tek tek ulaşır, rengi `.lacivert`/`.altin`
+  ve CSS değişkenleri verir. Logo yeniden çizilmez. Yeni logo dosyası gelirse önce
+  `<metadata>` bloğunu at: gelen SVG/PNG'lerde gömülü C2PA üretim verisi vardı.
+- Kaydırmaya bağlı animasyonlar `@supports (animation-timeline: view())` içinde; destek yoksa
+  (Firefox, eski Safari) ve hareket azaltılmışsa son hâl görünür. JS kapalıyken içerik eksiksiz.
+- İçerik HTML'de elle yazılı. Faaliyet eklemek: `#faaliyetler` → `.silsile`'nin başına yeni
+  `<li class="halka">` (en yeni üstte; yılın ilk kaydı `has-yil` + `.yil` alır).
+- `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` ve `og.png` (1200×630, sosyal medya
+  önizlemesi) amblemden üretildi; logo değişirse dördü birlikte yenilenir. `og:image` mutlak
+  adres ister (`https://gencya.org/og.png`).
 
 ## Ortam değişkenleri
 
