@@ -1,6 +1,6 @@
 {
   "title": "Kişisel Verilerin Korunması Hakkında Aydınlatma Metni",
-  "lastUpdated": "16 Ekim 2026",
+  "lastUpdated": "17 Ekim 2026",
   "intro": [
     "Gençya Derneği bünyesindeki Gençya Teknoloji Takımı olarak, internet sitemiz (gencya.org.tr) üzerinden ilettiğiniz kişisel verileri 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve ilgili mevzuata uygun olarak işliyoruz.",
     "Bu metin, KVKK'nın 10. maddesi ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ uyarınca; sitedeki genel üyelik ve teknik takım başvuru formlarını, iletişim formunu kullanan ve siteyi ziyaret eden kişileri bilgilendirmek amacıyla hazırlanmıştır."
@@ -24,7 +24,7 @@
       "items": [
         "Kimlik bilgileri: ad, soyad.",
         "İletişim bilgileri: e-posta adresi, telefon numarası.",
-        "Eğitim bilgileri: öğrenci numarası, fakülte, bölüm, sınıf.",
+        "Eğitim bilgileri: üniversite, fakülte, bölüm, sınıf.",
         "Teknik takım başvurularına özgü bilgiler: GitHub, LinkedIn, Kaggle ve portfolyo bağlantıları; ilgi alanı tercihiniz, deneyim ve motivasyon sorularına verdiğiniz yanıtlar.",
         "Başvuru değerlendirme bilgileri: başvurunuzun tarihi, durumu (beklemede, incelendi, kabul edildi, reddedildi) ve takım yöneticilerinin değerlendirme notları.",
         "İletişim formu bilgileri: ad, e-posta adresi, mesajınızın konusu ve içeriği.",

@@ -20,10 +20,10 @@ const C = Number(arg('--c', 10));
 const SUBMIT = process.argv.includes('--submit');
 
 // Alan adları createGeneralSubmission'la aynı olmalı, yoksa her istek 400 döner.
-// API öğrenci no / e-posta / telefon tekrarını 409'la reddeder: her koşu ve her istek benzersiz.
+// API e-posta / telefon tekrarını 409'la reddeder: her koşu ve her istek benzersiz.
 const RUN = Date.now().toString(36);
 const body = (i) => ({
-  name: `Yuk Test${i}`, studentId: `${RUN}-${i}`,
+  name: `Yuk Test${i}`, university: 'Kocaeli Üniversitesi',
   email: `loadtest+${RUN}-${i}@example.invalid`, phone: `${RUN}-${i}`,
   faculty: 'Mühendislik', department: 'Yazılım Mühendisliği', grade: 2,
 });

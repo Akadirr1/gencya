@@ -14,7 +14,7 @@ const submissionSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    studentId: {
+    university: {
       type: String,
       required: true,
       trim: true,
@@ -79,7 +79,6 @@ const submissionSchema = new mongoose.Schema(
 submissionSchema.index({ submissionType: 1 });
 submissionSchema.index({ technicalCategory: 1 });
 submissionSchema.index({ email: 1 });
-submissionSchema.index({ studentId: 1 });
 submissionSchema.index({ status: 1 });
 submissionSchema.index({ createdAt: -1 });
 

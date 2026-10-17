@@ -7,7 +7,7 @@
 // Yalnızca yerelde ve kullanıcısı olmayan boş bir veritabanında çalışır: ilk
 // admini KEY ile oluşturur (kullanıcı varsa 3. adım 401 alır), pencere
 // tarihlerini değiştirir, başvuru kaydı yazar. CI'da loadtest'ten önce koşar:
-// 7 form isteği harcar (form limiti 15 dk'da 100) ve genel formu açık bırakır.
+// 11 form isteği harcar (form limiti 15 dk'da 100) ve genel formu açık bırakır.
 // Kampüs adımı ayrı bir istemci IP'siyle (CF-Connecting-IP) genel limiti doldurur;
 // CI'daki loadtest'in kovalarına dokunmaz.
 //
@@ -50,13 +50,13 @@ const PASSWORD = 'smoke-password-123';
 let adminToken;
 
 // loadtest.js'teki başvuru gövdesiyle aynı alanlar; başka alan (ör. surname)
-// teknik uçta allowlist'e takılır. Öğrenci no / e-posta / telefon her başvuruda farklı.
+// teknik uçta allowlist'e takılır. E-posta / telefon her başvuruda farklı.
 const RUN = Date.now().toString(36);
 let seq = 0;
 const applicant = () => {
   const id = `${RUN}-${++seq}`;
   return {
-    name: `Smoke Aday${seq}`, studentId: id, email: `smoke+${id}@example.invalid`, phone: id,
+    name: `Smoke Aday${seq}`, university: 'Kocaeli Üniversitesi', email: `smoke+${id}@example.invalid`, phone: id,
     faculty: 'Mühendislik', department: 'Yazılım Mühendisliği', grade: 2,
   };
 };
@@ -151,8 +151,18 @@ await step('genel üyelik kapatılınca 403, yeniden açılınca 201', async () 
   expectStatus(await submit('general'), 201);
 });
 
-await step('geçersiz sınıf ve JSON olmayan gövde → 400 (500 değil)', async () => {
+// Öğrenci numarası yok; tekrar başvuruyu e-posta ve telefon yakalar. Şema e-postayı küçük
+// harfle, telefonu kırpılmış kaydediyor; sorgu da aynı biçimde aramalı.
+await step('aynı e-posta (büyük harfle) ya da telefonla ikinci başvuru → 409', async () => {
+  const first = applicant();
+  expectStatus(await api('POST', '/submissions/general', { body: first }), 201);
+  expectStatus(await api('POST', '/submissions/general', { body: { ...applicant(), email: first.email.toUpperCase() } }), 409);
+  expectStatus(await api('POST', '/submissions/general', { body: { ...applicant(), phone: ` ${first.phone} ` } }), 409);
+});
+
+await step('geçersiz sınıf, boş üniversite ve JSON olmayan gövde → 400 (500 değil)', async () => {
   expectStatus(await api('POST', '/submissions/general', { body: { ...applicant(), grade: 99 } }), 400);
+  expectStatus(await api('POST', '/submissions/general', { body: { ...applicant(), university: '' } }), 400);
   const res = await fetch(`${BASE}/submissions/general`, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: 'merhaba' });
   assert.equal(res.status, 400, `text/plain gövde: ${res.status}`);
 });

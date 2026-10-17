@@ -54,13 +54,13 @@ dosyalarında tanımlı; forma alan eklerken CLAUDE.md'deki "Başvuru formuna al
 listesine bak.
 
 - **POST** `/submissions/general`
-  - **Açıklama:** Genel üyelik başvurusunu alır ve kaydeder. Form kapalıysa (bkz. `/submissions/windows`) 403 döner.
-  - **Request Body:** `{ "name": "string", "studentId": "string", "email": "string", "phone": "string", "faculty": "string", "department": "string", "grade": "number" }`
+  - **Açıklama:** Genel üyelik başvurusunu alır ve kaydeder. Form kapalıysa (bkz. `/submissions/windows`) 403 döner. Aynı e-posta ya da telefonla önceki genel başvuru varsa 409.
+  - **Request Body:** `{ "name": "string", "university": "string", "email": "string", "phone": "string", "faculty": "string", "department": "string", "grade": "number" }`
 
 - **POST** `/submissions/technical/:slug`
   - **Açıklama:** Teknik takım başvurusunu alır ve kaydeder. `slug`: `navigation`, `vision` veya `electronics` (form dosyasının adı).
   - **Request Body:** Genel başvurudaki öğrenci alanları + formdaki diğer her alan için `"question_<id>": "string"` (en fazla 5000 karakter). Kabul edilen anahtarlar `controllers/submissionsController.js` → `allowedCustomFields`; listede olmayan anahtar 400 döner.
-  - **Yanıtlar:** 201 kaydedildi; 400 eksik veya geçersiz alan; 403 form şu anda kapalı (`"Bu başvuru şu anda kapalı."`); 409 aynı kategoride aynı öğrenci no, e-posta ya da telefonla önceki başvuru; 429 istek sınırı.
+  - **Yanıtlar:** 201 kaydedildi; 400 eksik veya geçersiz alan; 403 form şu anda kapalı (`"Bu başvuru şu anda kapalı."`); 409 aynı kategoride aynı e-posta ya da telefonla önceki başvuru; 429 istek sınırı.
 
 - **GET** `/submissions/windows`
   - **Açıklama:** Başvuru formlarının açık/kapalı durumu, herkese açık. Form `[opensAt, closesAt)` aralığında açık: `opensAt` yoksa kapalı, `closesAt` yoksa süresiz açık. Veritabanında kayıt yoksa genel üyelik açık, teknik formlar kapalı. Karar sunucu saatiyle verilir; yanıt önbelleğe alınmaz.

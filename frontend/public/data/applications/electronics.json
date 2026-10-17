@@ -22,13 +22,6 @@
       "required": true
     },
     {
-      "id": "studentId",
-      "label": "Öğrenci Numarası",
-      "type": "text",
-      "placeholder": "Öğrenci numaranızı giriniz",
-      "required": true
-    },
-    {
       "id": "email",
       "label": "E-posta",
       "type": "email",
@@ -40,6 +33,13 @@
       "label": "Telefon Numarası",
       "type": "tel",
       "placeholder": "Telefon numaranızı giriniz",
+      "required": true
+    },
+    {
+      "id": "university",
+      "label": "Üniversite",
+      "type": "text",
+      "placeholder": "Üniversitenizi giriniz",
       "required": true
     },
     {

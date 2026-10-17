@@ -35,33 +35,30 @@ export const createGeneralSubmission = async (req, res) => {
     }
 
     // JSON olmayan gövdede req.body tanımsız; 500 yerine eksik alan (400) dönsün
-    const { name, studentId, email, phone, faculty, department, grade } = req.body ?? {};
+    const { name, university, email, phone, faculty, department, grade } = req.body ?? {};
 
     // Zorunlu alanları kontrol et
-    if (!name || !studentId || !email || !phone || !faculty || !department || grade === undefined || grade === null || grade === '') {
+    if (!name || !university || !email || !phone || !faculty || !department || grade === undefined || grade === null || grade === '') {
       return res.status(400).json({
         success: false,
         message: "Lütfen tüm zorunlu alanları doldurunuz."
       });
     }
 
-    if (![name, studentId, email, phone, faculty, department].every((v) => isText(v)) || !isGrade(grade)) {
+    if (![name, university, email, phone, faculty, department].every((v) => isText(v)) || !isGrade(grade)) {
       return res.status(400).json({ success: false, message: INVALID_FIELD_MESSAGE });
     }
 
-    // Aynı öğrenci numarası veya email ile başka bir başvuru var mı kontrol et
+    // Aynı e-posta veya telefonla başka bir başvuru var mı (şema e-postayı küçük harfle, ikisini kırpılmış kaydediyor)
     const existingSubmission = await Submission.findOne({
-      $or: [
-        { studentId, submissionType: "general" },
-        { email, submissionType: "general" },
-        { phone, submissionType: "general" }
-      ]
+      submissionType: "general",
+      $or: [{ email: email.trim().toLowerCase() }, { phone: phone.trim() }]
     });
 
     if (existingSubmission) {
       return res.status(409).json({
         success: false,
-        message: "Bu öğrenci numarası, e-posta veya telefon ile daha önce başvuru yapılmış."
+        message: "Bu e-posta veya telefon ile daha önce başvuru yapılmış."
       });
     }
 
@@ -69,7 +66,7 @@ export const createGeneralSubmission = async (req, res) => {
     const submission = await Submission.create({
       submissionType: "general",
       name,
-      studentId,
+      university,
       email,
       phone,
       faculty,
@@ -114,10 +111,10 @@ export const createTechnicalSubmission = async (req, res) => {
       return res.status(403).json({ success: false, message: CLOSED_MESSAGE });
     }
 
-    const { name, studentId, email, phone, faculty, department, grade, ...customFields } = req.body ?? {};
+    const { name, university, email, phone, faculty, department, grade, ...customFields } = req.body ?? {};
 
     // Zorunlu alanları kontrol et
-    if (!name || !studentId || !email || !phone || !faculty || !department || grade === undefined || grade === null || grade === '') {
+    if (!name || !university || !email || !phone || !faculty || !department || grade === undefined || grade === null || grade === '') {
       return res.status(400).json({
         success: false,
         message: "Lütfen tüm zorunlu alanları doldurunuz."
@@ -145,18 +142,16 @@ export const createTechnicalSubmission = async (req, res) => {
       });
     }
 
-    if (![name, studentId, email, phone, faculty, department].every((v) => isText(v)) || !isGrade(grade) ||
+    if (![name, university, email, phone, faculty, department].every((v) => isText(v)) || !isGrade(grade) ||
         !Object.values(customFields).every((v) => isText(v, 5000))) {
       return res.status(400).json({ success: false, message: INVALID_FIELD_MESSAGE });
     }
 
-    // Aynı öğrenci numarası veya email ile aynı kategoride başka bir başvuru var mı kontrol et
+    // Aynı kategoride aynı e-posta veya telefonla başka bir başvuru var mı
     const existingSubmission = await Submission.findOne({
-      $and: [
-        { submissionType: "technical" },
-        { technicalCategory: slug },
-        { $or: [{ studentId }, { email }, { phone }] }
-      ]
+      submissionType: "technical",
+      technicalCategory: slug,
+      $or: [{ email: email.trim().toLowerCase() }, { phone: phone.trim() }]
     });
 
     if (existingSubmission) {
@@ -171,7 +166,7 @@ export const createTechnicalSubmission = async (req, res) => {
       submissionType: "technical",
       technicalCategory: slug,
       name,
-      studentId,
+      university,
       email,
       phone,
       faculty,
@@ -224,7 +219,7 @@ export const getAllSubmissions = async (req, res) => {
       filter.$or = [
         { name: mongoose.trusted({ $regex: search, $options: "i" }) },
         { email: mongoose.trusted({ $regex: search, $options: "i" }) },
-        { studentId: mongoose.trusted({ $regex: search, $options: "i" }) }
+        { university: mongoose.trusted({ $regex: search, $options: "i" }) }
       ];
     }
 
@@ -336,7 +331,7 @@ export const exportSubmissionsToCSV = async (req, res) => {
     const baseFields = [
       { label: 'Başvuru Tipi', value: 'submissionType' },
       { label: 'Ad', value: 'name' },
-      { label: 'Öğrenci No', value: 'studentId' },
+      { label: 'Üniversite', value: 'university' },
       { label: 'E-posta', value: 'email' },
       { label: 'Telefon', value: 'phone' },
       { label: 'Fakülte', value: 'faculty' },
