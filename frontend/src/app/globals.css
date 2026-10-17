@@ -258,6 +258,11 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+  /* Şeffaf zeminli native select'in açılır listesini tarayıcı beyaz çiziyor; seçenekler koyu
+     temanın açık yazısını alınca okunmuyordu. Liste zemini ve yazısı temadan gelsin. */
+  option {
+    @apply bg-popover text-popover-foreground;
+  }
   h1, h2, h3 {
     @apply font-display;
   }
