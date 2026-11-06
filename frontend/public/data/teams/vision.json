@@ -19,6 +19,16 @@
       "linkedin": "",
       "kaggle": "",
       "skills": []
+    },
+    {
+      "name": "Salih Göksu",
+      "role": "Üye",
+      "image": "/profile/teams/vision/salih_goksu.jpeg",
+      "department": "Uçak Mühendisliği",
+      "github": "",
+      "linkedin": "",
+      "kaggle": "",
+      "skills": []
     }
   ],
   "achievements": [],
@@ -27,7 +37,12 @@
     {
       "title": "Su Altı Nesne Tanıma Sistemi",
       "description": "Derin öğrenme kullanarak su altı nesnelerini tespit eden ve sınıflandıran yapay zeka modeli.",
-      "technologies": ["Python", "TensorFlow", "OpenCV", "YOLO"],
+      "technologies": [
+        "Python",
+        "TensorFlow",
+        "OpenCV",
+        "YOLO"
+      ],
       "status": "Geliştirme Aşamasında",
       "github": "",
       "demo": null
