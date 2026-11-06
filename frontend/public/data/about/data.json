@@ -37,32 +37,8 @@
   },
   "boardMembers": [
     {
-      "name": "Abdullah Eren Keskin",
-      "role": "Dernek Başkanı",
-      "image": "/profile/teams/electronics/abdullah_eren_keskin.jpeg",
-      "department": "Elektronik ve Haberleşme Mühendisliği",
-      "github": "",
-      "linkedin": ""
-    },
-    {
-      "name": "Hamza Tarı",
-      "role": "Takım Kaptanı",
-      "image": "/profile/teams/electronics/hamza_tari.jpeg",
-      "department": "Mekatronik Mühendisliği",
-      "github": "",
-      "linkedin": ""
-    },
-    {
-      "name": "Salih Göksu",
-      "role": "Takım Kaptanı",
-      "image": "/profile/boardMembers/salih_goksu.jpeg",
-      "department": "Uçak Mühendisliği",
-      "github": "",
-      "linkedin": ""
-    },
-    {
       "name": "Abdülkadir İvenç",
-      "role": "Web Kurucusu",
+      "role": "Takım Kaptanı",
       "image": "/profile/teams/navigation/abdulkadir_ivenc.jpeg",
       "department": "Yazılım Mühendisliği",
       "github": "https://github.com/Akadirr1",
